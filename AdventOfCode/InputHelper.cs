@@ -18,7 +18,7 @@ namespace AdventOfCode
         static InputHelper()
         {
             _webClient = new();
-            _webClient.Headers.Add("user-agent", "https://github.com/suppergerrie2/AdventOfCode2020");
+            _webClient.Headers.Add("user-agent", "https://github.com/suppergerrie2/AdventOfCode");
             _webClient.Headers.Add("cookie", "session=" + Environment.GetEnvironmentVariable("AOC_SESSION"));
 
             _webClient.DownloadProgressChanged += (sender, args) =>
