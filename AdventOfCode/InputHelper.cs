@@ -47,6 +47,23 @@ namespace AdventOfCode
             return ReadArray(s, int.Parse, separator);
         }
 
+        public static int[,] ReadIntArray(int day, int year)
+        {
+            string[] lines = ReadAllLines(day, year).ToArray();
+
+            int[,] arr = new int[lines.Length, lines[0].Length];
+            
+            for (var i = 0; i < lines.Length; i++)
+            {
+                for (int j = 0; j < lines[i].Length; j++)
+                {
+                    arr[i, j] = int.Parse(lines[i][j].ToString());
+                }
+            }
+
+            return arr;
+        }
+
         private static string GetPath(int day, int year)
         {
             string path = Path.Join(InputPath, year.ToString(), $"Day{day}.txt");

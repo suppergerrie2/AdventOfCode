@@ -9,17 +9,16 @@ namespace AdventOfCode.Solutions.Year2021
     {
         public Day9()
         {
-            var input = InputHelper.ReadAllLines(9, 2021).Select(i => i.Select(c => int.Parse(c.ToString())).ToArray())
-                .ToArray();
+            var input = InputHelper.ReadIntArray(9, 2021);
             // var input = "2199943210\n3987894921\n9856789892\n8767896789\n9899965678".Split("\n")
             //     .Select(i => i.Select(c => int.Parse(c.ToString())).ToArray()).ToArray();
 
             var seeds = new Queue<Point>();
 
             int sum = 0;
-            for (int y = 0; y < input.Length; y++)
+            for (int y = 0; y < input.GetLength(0); y++)
             {
-                for (int x = 0; x < input[y].Length; x++)
+                for (int x = 0; x < input.GetLength(1); x++)
                 {
                     int top = GetVal(x, y + 1);
                     int bottom = GetVal(x, y - 1);
@@ -78,12 +77,12 @@ namespace AdventOfCode.Solutions.Year2021
             
             int GetVal(int x, int y)
             {
-                if (x < 0 || y < 0 || y >= input.Length)
+                if (x < 0 || y < 0 || y >= input.GetLength(0))
                 {
                     return int.MaxValue;
                 }
 
-                return x >= input[y].Length ? int.MaxValue : input[y][x];
+                return x >= input.GetLength(1) ? int.MaxValue : input[y,x];
             }
         }
     }
