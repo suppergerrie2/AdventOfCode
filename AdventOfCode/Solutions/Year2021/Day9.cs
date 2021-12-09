@@ -14,7 +14,7 @@ namespace AdventOfCode.Solutions.Year2021
             // var input = "2199943210\n3987894921\n9856789892\n8767896789\n9899965678".Split("\n")
             //     .Select(i => i.Select(c => int.Parse(c.ToString())).ToArray()).ToArray();
 
-            Queue<Point> seeds = new Queue<Point>();
+            var seeds = new Queue<Point>();
 
             int sum = 0;
             for (int y = 0; y < input.Length; y++)
@@ -39,12 +39,11 @@ namespace AdventOfCode.Solutions.Year2021
 
             var basins = new List<HashSet<Point>>();
 
-            Size[] neighbours = new Size[]
-            {
-                new Size(0, 0 + 1),
-                new Size(0, 0 - 1),
-                new Size(0 + 1, 0),
-                new Size(0 - 1, 0),
+            Size[] neighbours = {
+                new(0, 1),
+                new(0, -1),
+                new(1, 0),
+                new(-1, 0),
             };
 
             while (seeds.Count > 0)
@@ -65,27 +64,18 @@ namespace AdventOfCode.Solutions.Year2021
                         Point newNeighbour = p + offset;
                         
                         if(visited.Contains(newNeighbour)) continue;
-
-                        if (GetVal(newNeighbour.X, newNeighbour.Y) < 9)
-                        {
-                            visited.Add(newNeighbour);
-                            toVisit.Enqueue(newNeighbour);
-                        }
+                        if (GetVal(newNeighbour.X, newNeighbour.Y) >= 9) continue;
+                        
+                        visited.Add(newNeighbour);
+                        toVisit.Enqueue(newNeighbour);
                     }
                 }
                 
                 basins.Add(visited);
             }
 
-            sum = 1;
-            foreach (var hashSet in basins.OrderByDescending(h => h.Count).Take(3))
-            {
-                Console.WriteLine(hashSet.Count);
-                sum *= hashSet.Count;
-            }
+            Console.WriteLine(basins.Select(o => o.Count).OrderByDescending().Take(3).Aggregate((a, b) => a * b));
             
-            Console.WriteLine(sum);
-
             int GetVal(int x, int y)
             {
                 if (x < 0 || y < 0 || y >= input.Length)
