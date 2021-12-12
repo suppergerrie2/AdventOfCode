@@ -51,6 +51,11 @@ namespace AdventOfCode
         {
             string[] lines = ReadAllLines(day, year).ToArray();
 
+            return Parse2DIntArray(lines);
+        }
+        
+        public static int[,] Parse2DIntArray(string[] lines)
+        {
             int[,] arr = new int[lines.Length, lines[0].Length];
             
             for (var i = 0; i < lines.Length; i++)

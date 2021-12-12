@@ -7,6 +7,23 @@ namespace AdventOfCode
     {
         public static readonly Direction[] Directions = { Direction.Up, Direction.Right, Direction.Down, Direction.Left };
 
+        public static readonly Size[] DiagonalNeighbours = new Size[8];
+
+        static DirectionHelper()
+        {
+            int index = 0;
+            for (int i = -1; i <= 1; i++)
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == 0 && j == 0)
+                {
+                    continue;
+                }
+
+                DiagonalNeighbours[index++] = new Size(i, j);
+            }
+        }
+
         public enum Direction { Up, Right, Down, Left }
 
         public static Direction Rotate90Degrees(this Direction dir, bool clockWise = true)
