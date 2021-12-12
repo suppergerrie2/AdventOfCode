@@ -9,7 +9,7 @@ namespace AdventOfCode.Solutions.Year2021
     {
         public Day9()
         {
-            var input = InputHelper.ReadIntArray(9, 2021);
+            var input = InputHelper.Read2DIntArray(9, 2021);
             // var input = "2199943210\n3987894921\n9856789892\n8767896789\n9899965678".Split("\n")
             //     .Select(i => i.Select(c => int.Parse(c.ToString())).ToArray()).ToArray();
 

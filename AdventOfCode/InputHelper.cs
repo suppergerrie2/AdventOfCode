@@ -47,7 +47,7 @@ namespace AdventOfCode
             return ReadArray(s, int.Parse, separator);
         }
 
-        public static int[,] ReadIntArray(int day, int year)
+        public static int[,] Read2DIntArray(int day, int year)
         {
             string[] lines = ReadAllLines(day, year).ToArray();
 
